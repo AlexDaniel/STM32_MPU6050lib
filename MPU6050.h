@@ -36,6 +36,7 @@ extern "C" {
 #endif
 
 /* Includes */
+#include <stdbool.h>
 #include "HAL_MPU6050.h"
 
 #define MPU6050_ADDRESS_AD0_LOW     0x68 // address pin low (GND), default for InvenSense evaluation board

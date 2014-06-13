@@ -29,6 +29,7 @@
  */
 
 /* Includes */
+#include <stdbool.h>
 #include "MPU6050.h"
 #include "stm32f10x_i2c.h"
 
@@ -57,7 +58,7 @@ void MPU6050_Initialize()
  */
 bool MPU6050_TestConnection()
 {
-    return MPU6050_GetDeviceID() == 0x34 ? TRUE : FALSE; //0b110100; 8-bit representation in hex = 0x34
+    return MPU6050_GetDeviceID() == 0x34; //0b110100; 8-bit representation in hex = 0x34
 }
 // WHO_AM_I register
 
@@ -197,7 +198,7 @@ bool MPU6050_GetSleepModeStatus()
 {
     uint8_t tmp;
     MPU6050_ReadBit(MPU6050_DEFAULT_ADDRESS, MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, &tmp);
-    return tmp == 0x00 ? FALSE : TRUE;
+    return tmp != 0x00;
 }
 
 /** Set sleep mode status.
